@@ -1,0 +1,28 @@
+<%- |   | -%>
+#!/bin/sh
+#
+# Managed with puppet (module mollyguard)
+#
+# This script checks the health of a ceph cluster
+#
+
+set -e
+
+# check if ceph is healthy
+if [ ! "$(ceph health)" = 'HEALTH_OK' ] ; then
+  echo
+  echo "The ceph cluster is unhealthy !:"
+  echo
+  ceph status
+  echo
+  read -p "Do you want to continue with '$MOLLYGUARD_CMD'? (yN) " answer
+  if [ "$answer" = "y" ] ; then
+    exit 0
+  else
+    exit 1
+  fi
+fi
+
+echo "\nYoure ceph cluster seems healthy, continue\n"
+
+exit 0

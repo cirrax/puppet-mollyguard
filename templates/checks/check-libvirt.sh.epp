@@ -1,0 +1,26 @@
+<%- | String $options = '--all' | -%>
+#!/bin/sh
+# 
+# Managed with puppet (module mollyguard)
+#
+# This script checks for running and paused VM's on the host.
+#
+
+set -e
+
+# check if there are still servers defined in libvirt
+if [ "$(virsh --quiet list <%= $options %> | wc -l)" -gt 0 ] ; then
+  echo
+  echo "There are still virtual machines defined on this host:"
+  echo
+  virsh list --all
+  echo
+  read -p "Do you want to continue with '$MOLLYGUARD_CMD'? (yN) " answer
+  if [ "$answer" = "y" ] ; then
+    exit 0
+  else
+    exit 1
+  fi
+fi
+
+exit 0

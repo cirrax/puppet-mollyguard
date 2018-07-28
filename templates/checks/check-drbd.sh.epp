@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# This script checks if all drbd resources are in sync
+#
+
+set -e
+
+# check if drbd resources are in sync
+if [ "$(drbd-overview |grep -v UpToDate/UpToDate | wc -l)" -gt 0 ] ; then
+  echo
+  echo "There are drbd volumes that are not upto date:"
+  echo
+  drbd-overview | grep -v UpToDate/UpToDate
+  echo
+  read -p "Do you want to continue with '$MOLLYGUARD_CMD'? (yN) " answer
+  if [ "$answer" = "y" ] ; then
+    exit 0
+  else
+    exit 1
+  fi
+fi
+
+exit 0
