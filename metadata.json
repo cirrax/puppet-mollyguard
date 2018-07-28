@@ -1,0 +1,34 @@
+{
+  "name": "cirrax-mollyguard",
+  "version": "0.0.1",
+  "author": "Cirrax GmbH",
+  "license": "GPL-3.0",
+  "summary": "A module to configure mollyguard",
+  "source": "https://github.com/cirrax/puppet-mollyguard",
+  "project_page": "https://github.com/cirrax/puppet-mollyguard",
+  "issues_url": "https://github.com/cirrax/puppet-mollyguard/issues",
+  "tags": [
+    "molly-guard",
+    "reboot",
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=4.0.0 < 6.0.0"
+    }
+  ],
+  "dependencies": [
+  ]
+}
