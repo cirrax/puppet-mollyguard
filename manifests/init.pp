@@ -40,6 +40,7 @@ class mollyguard (
 
   $check_defaults = {
     destination => $check_destination,
+    require     => Package[$packages],
   }
 
   if $purge_checks {
@@ -47,6 +48,7 @@ class mollyguard (
       ensure  => 'directory',
       purge   => true,
       recurse => true,
+      require => Package[$packages],
     }
 
     # do not remove checks installed from the package
