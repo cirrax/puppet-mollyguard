@@ -30,53 +30,59 @@ describe 'mollyguard' do
     }
   end
 
-  context 'with defaults' do
-    let :params do
-      default_params
+  on_supported_os.each do |os, os_facts|
+    context "on #{os}" do
+      let(:facts) { os_facts }
+
+      context 'with defaults' do
+        let :params do
+          default_params
+        end
+
+        it_behaves_like 'mollyguard shared example'
+        it_behaves_like 'mollyguard purge checks shared example'
+
+        it { is_expected.to contain_file(params[:check_destination] + '/10-print-message') }
+        it { is_expected.to contain_file(params[:check_destination] + '/30-query-hostname') }
+      end
+
+      context 'with non defaults' do
+        let :params do
+          default_params.merge(
+            package_ensure: 'installed',
+            packages: ['molly-guard', 'blah'],
+            check_destination: '/tmp',
+            ignore_sys_checks: ['30-whatever', '30-another'],
+          )
+        end
+
+        it_behaves_like 'mollyguard shared example'
+        it_behaves_like 'mollyguard purge checks shared example'
+
+        it { is_expected.to contain_file(params[:check_destination] + '/30-whatever') }
+        it { is_expected.to contain_file(params[:check_destination] + '/30-another') }
+
+        it {
+          is_expected.to contain_package('blah')
+            .with_ensure(params[:package_ensure])
+            .with_tag('molly-guard-packages')
+        }
+      end
+
+      context 'with non purging checks' do
+        let :params do
+          default_params.merge(
+            purge_checks: false,
+            check_destination: '/tmp',
+          )
+        end
+
+        it_behaves_like 'mollyguard shared example'
+
+        it { is_expected.not_to contain_file(params[:check_destination]) }
+        it { is_expected.not_to contain_file(params[:check_destination] + '/10-print-message') }
+        it { is_expected.not_to contain_file(params[:check_destination] + '/30-query-hostname') }
+      end
     end
-
-    it_behaves_like 'mollyguard shared example'
-    it_behaves_like 'mollyguard purge checks shared example'
-
-    it { is_expected.to contain_file(params[:check_destination] + '/10-print-message') }
-    it { is_expected.to contain_file(params[:check_destination] + '/30-query-hostname') }
-  end
-
-  context 'with non defaults' do
-    let :params do
-      default_params.merge(
-        package_ensure: 'installed',
-        packages: ['molly-guard', 'blah'],
-        check_destination: '/tmp',
-        ignore_sys_checks: ['30-whatever', '30-another'],
-      )
-    end
-
-    it_behaves_like 'mollyguard shared example'
-    it_behaves_like 'mollyguard purge checks shared example'
-
-    it { is_expected.to contain_file(params[:check_destination] + '/30-whatever') }
-    it { is_expected.to contain_file(params[:check_destination] + '/30-another') }
-
-    it {
-      is_expected.to contain_package('blah')
-        .with_ensure(params[:package_ensure])
-        .with_tag('molly-guard-packages')
-    }
-  end
-
-  context 'with non purging checks' do
-    let :params do
-      default_params.merge(
-        purge_checks: false,
-        check_destination: '/tmp',
-      )
-    end
-
-    it_behaves_like 'mollyguard shared example'
-
-    it { is_expected.not_to contain_file(params[:check_destination]) }
-    it { is_expected.not_to contain_file(params[:check_destination] + '/10-print-message') }
-    it { is_expected.not_to contain_file(params[:check_destination] + '/30-query-hostname') }
   end
 end

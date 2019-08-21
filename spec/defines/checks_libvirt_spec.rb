@@ -26,28 +26,34 @@ describe 'mollyguard::checks::libvirt' do
     }
   end
 
-  context 'whith defaults' do
-    let(:title) { 'test-check' }
-    let :params do
-      default_params
+  on_supported_os.each do |os, os_facts|
+    context "on #{os}" do
+      let(:facts) { os_facts }
+
+      context 'whith defaults' do
+        let(:title) { 'test-check' }
+        let :params do
+          default_params
+        end
+
+        it_behaves_like 'mollyguard::checks::libvirt define'
+      end
+
+      context 'whith non-defaults' do
+        let(:title) { 'another-check' }
+        let :params do
+          default_params.merge(
+            destination: '/tmp/somewhereelse',
+            check_name: 'another-blah-check',
+            sort: '42',
+            owner: 'someone',
+            group: 'someone',
+            mode: '4242',
+          )
+        end
+
+        it_behaves_like 'mollyguard::checks::libvirt define'
+      end
     end
-
-    it_behaves_like 'mollyguard::checks::libvirt define'
-  end
-
-  context 'whith non-defaults' do
-    let(:title) { 'another-check' }
-    let :params do
-      default_params.merge(
-        destination: '/tmp/somewhereelse',
-        check_name: 'another-blah-check',
-        sort: '42',
-        owner: 'someone',
-        group: 'someone',
-        mode: '4242',
-      )
-    end
-
-    it_behaves_like 'mollyguard::checks::libvirt define'
   end
 end
