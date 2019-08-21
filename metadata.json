@@ -2,14 +2,13 @@
   "name": "cirrax-mollyguard",
   "version": "1.0.2",
   "author": "Cirrax GmbH",
-  "license": "GPL-3.0",
   "summary": "A module to configure molly-guard",
+  "license": "GPL-3.0",
   "source": "https://github.com/cirrax/puppet-mollyguard",
   "project_page": "https://github.com/cirrax/puppet-mollyguard",
   "issues_url": "https://github.com/cirrax/puppet-mollyguard/issues",
-  "tags": [
-    "molly-guard",
-    "reboot"
+  "dependencies": [
+
   ],
   "operatingsystem_support": [
     {
@@ -29,7 +28,11 @@
       "version_requirement": ">=4.0.0 < 7.0.0"
     }
   ],
-  "dependencies": [
-
-  ]
+  "tags": [
+    "molly-guard",
+    "reboot"
+  ],
+  "pdk-version": "1.12.0",
+  "template-url": "pdk-default#1.12.0",
+  "template-ref": "1.12.0-0-g55d9ae2"
 }
