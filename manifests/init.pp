@@ -1,28 +1,27 @@
 # mollyguard main class
 # 
-# Parameters:
-#   $package_ensure
-#     what to ensure for packages, defaults to 'present'
-#   $packages
-#     Array of packages to install, defaults to ['molly-guard']
-#   $checks
-#     Hash of additional checks to install, defaults to {}
+# @param package_ensure
+#   what to ensure for packages, defaults to 'present'
+# @param packages
+#   Array of packages to install, defaults to ['molly-guard']
+# @param checks
+#   Hash of additional checks to install, defaults to {}
 #
-#     Example (hiera):
-#       mollyguard::checks:
-#         libvirt:
-#           options: '--state-running --state-paused --state-other'
-#         drbd: {}
-#     
-#   $check_destination
-#     where to put the additional checks, 
-#     defaults to '/etc/molly-guard/run.d'
-#   $purge_checks      = true,
-#     if true (default), we purge checks not managed with puppet
-#   $ignore_sys_checks
-#     name of checks to ignore purging, these are the default
-#     checks installed with the package.
-#     defaults to: ['10-print-message', '30-query-hostname']
+#   Example (hiera):
+#     mollyguard::checks:
+#       libvirt:
+#         options: '--state-running --state-paused --state-other'
+#       drbd: {}
+#   
+# @param check_destination
+#   where to put the additional checks, 
+#   defaults to '/etc/molly-guard/run.d'
+# @param purge_checks
+#   if true (default), we purge checks not managed with puppet
+# @param ignore_sys_checks
+#   name of checks to ignore purging, these are the default
+#   checks installed with the package.
+#   defaults to: ['10-print-message', '30-query-hostname']
 #
 class mollyguard (
   String  $package_ensure    = 'present',

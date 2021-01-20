@@ -32,7 +32,8 @@ class{'mollyguard'}
 Several defines can be used to add additional checks to run before reboot.
 
 ## Reference
-Find documentation about possible parameters on top of each manifest.
+Find documentation about possible parameters on top of each manifest and in the 
+REFERENCE.md file.
 
 ### classes
 #### mollyguard
