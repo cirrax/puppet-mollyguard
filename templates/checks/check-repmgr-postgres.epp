@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# Managed with puppet (module mollyguard)
+#
+# This script checks if the local node is a postgres master
+# managed with repmgr
+#
+
+set -e
+
+
+# check if we are primary 
+if [ ! `su -c 'repmgr node check --role' postgres|grep 'OK (node is standby)'` ] ; then
+  echo
+  echo "this postgres node is not in standby mode, or another error occured"
+  echo
+  su -c 'repmgr node check --role' postgres |sed 's/^OK//'
+  echo
+  su -c 'repmgr node status' postgres
+  echo
+  read -p "Do you want to continue with '$MOLLYGUARD_CMD'? (yN) " answer
+  if [ "$answer" = "y" ] ; then
+    exit 0
+  else
+    exit 1
+  fi
+fi
+
+echo "\nPostgres/repmgr seems to be in standby on this node, continue\n"
+
+exit 0
+
