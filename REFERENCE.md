@@ -17,15 +17,22 @@
 
 ## Classes
 
-### `mollyguard`
+### <a name="mollyguard"></a>`mollyguard`
 
 mollyguard main class
 
 #### Parameters
 
-The following parameters are available in the `mollyguard` class.
+The following parameters are available in the `mollyguard` class:
 
-##### `package_ensure`
+* [`package_ensure`](#package_ensure)
+* [`packages`](#packages)
+* [`checks`](#checks)
+* [`check_destination`](#check_destination)
+* [`purge_checks`](#purge_checks)
+* [`ignore_sys_checks`](#ignore_sys_checks)
+
+##### <a name="package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
@@ -33,7 +40,7 @@ what to ensure for packages, defaults to 'present'
 
 Default value: `'present'`
 
-##### `packages`
+##### <a name="packages"></a>`packages`
 
 Data type: `Array`
 
@@ -41,7 +48,7 @@ Array of packages to install, defaults to ['molly-guard']
 
 Default value: `['molly-guard']`
 
-##### `checks`
+##### <a name="checks"></a>`checks`
 
 Data type: `Hash`
 
@@ -55,7 +62,7 @@ Example (hiera):
 
 Default value: `{}`
 
-##### `check_destination`
+##### <a name="check_destination"></a>`check_destination`
 
 Data type: `String`
 
@@ -64,7 +71,7 @@ defaults to '/etc/molly-guard/run.d'
 
 Default value: `'/etc/molly-guard/run.d'`
 
-##### `purge_checks`
+##### <a name="purge_checks"></a>`purge_checks`
 
 Data type: `Boolean`
 
@@ -72,7 +79,7 @@ if true (default), we purge checks not managed with puppet
 
 Default value: ``true``
 
-##### `ignore_sys_checks`
+##### <a name="ignore_sys_checks"></a>`ignore_sys_checks`
 
 Data type: `Array`
 
@@ -84,21 +91,28 @@ Default value: `['10-print-message', '30-query-hostname']`
 
 ## Defined types
 
-### `mollyguard::checks::ceph`
+### <a name="mollyguardchecksceph"></a>`mollyguard::checks::ceph`
 
 use this to add ceph check to molly-guard
 
 #### Parameters
 
-The following parameters are available in the `mollyguard::checks::ceph` defined type.
+The following parameters are available in the `mollyguard::checks::ceph` defined type:
 
-##### `destination`
+* [`destination`](#destination)
+* [`check_name`](#check_name)
+* [`sort`](#sort)
+* [`owner`](#owner)
+* [`group`](#group)
+* [`mode`](#mode)
+
+##### <a name="destination"></a>`destination`
 
 Data type: `String`
 
 directory where to put the check (mandatory)
 
-##### `check_name`
+##### <a name="check_name"></a>`check_name`
 
 Data type: `String`
 
@@ -106,7 +120,7 @@ name of the check (defaults to $title)
 
 Default value: `$title`
 
-##### `sort`
+##### <a name="sort"></a>`sort`
 
 Data type: `String`
 
@@ -114,7 +128,7 @@ sort parameter (defaults to '20')
 
 Default value: `'20'`
 
-##### `owner`
+##### <a name="owner"></a>`owner`
 
 Data type: `String`
 
@@ -122,7 +136,7 @@ owner of the check (file), defaults to 'root'
 
 Default value: `'root'`
 
-##### `group`
+##### <a name="group"></a>`group`
 
 Data type: `String`
 
@@ -130,7 +144,7 @@ group of the check (file), defaults to 'root'
 
 Default value: `'root'`
 
-##### `mode`
+##### <a name="mode"></a>`mode`
 
 Data type: `String`
 
@@ -138,21 +152,28 @@ mode of the check (file), defaults to '0755'
 
 Default value: `'0755'`
 
-### `mollyguard::checks::drbd`
+### <a name="mollyguardchecksdrbd"></a>`mollyguard::checks::drbd`
 
 use this to add drbd check to molly-guard
 
 #### Parameters
 
-The following parameters are available in the `mollyguard::checks::drbd` defined type.
+The following parameters are available in the `mollyguard::checks::drbd` defined type:
 
-##### `destination`
+* [`destination`](#destination)
+* [`check_name`](#check_name)
+* [`sort`](#sort)
+* [`owner`](#owner)
+* [`group`](#group)
+* [`mode`](#mode)
+
+##### <a name="destination"></a>`destination`
 
 Data type: `String`
 
 directory where to put the check (mandatory)
 
-##### `check_name`
+##### <a name="check_name"></a>`check_name`
 
 Data type: `String`
 
@@ -160,7 +181,7 @@ name of the check (defaults to $title)
 
 Default value: `$title`
 
-##### `sort`
+##### <a name="sort"></a>`sort`
 
 Data type: `String`
 
@@ -168,7 +189,7 @@ sort parameter (defaults to '20')
 
 Default value: `'20'`
 
-##### `owner`
+##### <a name="owner"></a>`owner`
 
 Data type: `String`
 
@@ -176,7 +197,7 @@ owner of the check (file), defaults to 'root'
 
 Default value: `'root'`
 
-##### `group`
+##### <a name="group"></a>`group`
 
 Data type: `String`
 
@@ -184,7 +205,7 @@ group of the check (file), defaults to 'root'
 
 Default value: `'root'`
 
-##### `mode`
+##### <a name="mode"></a>`mode`
 
 Data type: `String`
 
@@ -192,22 +213,30 @@ mode of the check (file), defaults to '0755'
 
 Default value: `'0755'`
 
-### `mollyguard::checks::libvirt`
+### <a name="mollyguardcheckslibvirt"></a>`mollyguard::checks::libvirt`
 
 use this to add check for running libbvirt domains
 to molly-guard
 
 #### Parameters
 
-The following parameters are available in the `mollyguard::checks::libvirt` defined type.
+The following parameters are available in the `mollyguard::checks::libvirt` defined type:
 
-##### `destination`
+* [`destination`](#destination)
+* [`check_name`](#check_name)
+* [`sort`](#sort)
+* [`owner`](#owner)
+* [`group`](#group)
+* [`mode`](#mode)
+* [`options`](#options)
+
+##### <a name="destination"></a>`destination`
 
 Data type: `String`
 
 directory where to put the check (mandatory)
 
-##### `check_name`
+##### <a name="check_name"></a>`check_name`
 
 Data type: `String`
 
@@ -215,7 +244,7 @@ name of the check (defaults to $title)
 
 Default value: `$title`
 
-##### `sort`
+##### <a name="sort"></a>`sort`
 
 Data type: `String`
 
@@ -223,7 +252,7 @@ sort parameter (defaults to '20')
 
 Default value: `'20'`
 
-##### `owner`
+##### <a name="owner"></a>`owner`
 
 Data type: `String`
 
@@ -231,7 +260,7 @@ owner of the check (file), defaults to 'root'
 
 Default value: `'root'`
 
-##### `group`
+##### <a name="group"></a>`group`
 
 Data type: `String`
 
@@ -239,7 +268,7 @@ group of the check (file), defaults to 'root'
 
 Default value: `'root'`
 
-##### `mode`
+##### <a name="mode"></a>`mode`
 
 Data type: `String`
 
@@ -247,7 +276,7 @@ mode of the check (file), defaults to '0755'
 
 Default value: `'0755'`
 
-##### `options`
+##### <a name="options"></a>`options`
 
 Data type: `String`
 
@@ -259,21 +288,28 @@ if you do not care about shutdown instances.
 
 Default value: `'--all'`
 
-### `mollyguard::checks::repmgr_postgres`
+### <a name="mollyguardchecksrepmgr_postgres"></a>`mollyguard::checks::repmgr_postgres`
 
 use this to add repmgr-postgres check to molly-guard
 
 #### Parameters
 
-The following parameters are available in the `mollyguard::checks::repmgr_postgres` defined type.
+The following parameters are available in the `mollyguard::checks::repmgr_postgres` defined type:
 
-##### `destination`
+* [`destination`](#destination)
+* [`check_name`](#check_name)
+* [`sort`](#sort)
+* [`owner`](#owner)
+* [`group`](#group)
+* [`mode`](#mode)
+
+##### <a name="destination"></a>`destination`
 
 Data type: `String`
 
 directory where to put the check (mandatory)
 
-##### `check_name`
+##### <a name="check_name"></a>`check_name`
 
 Data type: `String`
 
@@ -281,7 +317,7 @@ name of the check (defaults to $title)
 
 Default value: `$title`
 
-##### `sort`
+##### <a name="sort"></a>`sort`
 
 Data type: `String`
 
@@ -289,7 +325,7 @@ sort parameter (defaults to '20')
 
 Default value: `'20'`
 
-##### `owner`
+##### <a name="owner"></a>`owner`
 
 Data type: `String`
 
@@ -297,7 +333,7 @@ owner of the check (file), defaults to 'root'
 
 Default value: `'root'`
 
-##### `group`
+##### <a name="group"></a>`group`
 
 Data type: `String`
 
@@ -305,7 +341,7 @@ group of the check (file), defaults to 'root'
 
 Default value: `'root'`
 
-##### `mode`
+##### <a name="mode"></a>`mode`
 
 Data type: `String`
 
