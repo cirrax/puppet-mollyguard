@@ -1,6 +1,6 @@
 {
   "name": "cirrax-mollyguard",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Cirrax GmbH",
   "summary": "A module to configure molly-guard",
   "license": "GPL-3.0",
