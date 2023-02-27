@@ -49,6 +49,9 @@ a define to add an additional check if all drbd resources are in sync
 #### mollyguard::check::libvirt
 a define to add an additional check if no libvirt VM's are running
 
+#### mollyguard::checks::repmgr\_postgres
+a define to add an additional check for repmgr postgres synchronisation
+
 ## Contributing
 
 Please report bugs and feature request using GitHub issue tracker.
