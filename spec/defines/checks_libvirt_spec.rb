@@ -19,7 +19,7 @@ describe 'mollyguard::checks::libvirt' do
 
     it {
       is_expected.to contain_file(params[:destination] + '/' + params[:sort] + '-' + params[:check_name])
-        .with_ensure('present')
+        .with_ensure('file')
         .with_owner(params[:owner])
         .with_group(params[:group])
         .with_mode(params[:mode])
