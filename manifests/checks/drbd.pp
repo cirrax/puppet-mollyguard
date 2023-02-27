@@ -22,13 +22,11 @@ define mollyguard::checks::drbd (
   String  $group      = 'root',
   String  $mode       = '0755',
 ) {
-
-  file {"${destination}/${sort}-${check_name}":
-    ensure  => 'present',
+  file { "${destination}/${sort}-${check_name}":
+    ensure  => 'file',
     owner   => $owner,
     group   => $group,
     mode    => $mode,
     content => epp('mollyguard/checks/check-drbd.sh.epp', {}),
   }
 }
-

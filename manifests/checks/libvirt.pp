@@ -30,12 +30,11 @@ define mollyguard::checks::libvirt (
   String  $mode       = '0755',
   String  $options    = '--all',
 ) {
-
-  file {"${destination}/${sort}-${check_name}":
-    ensure  => 'present',
+  file { "${destination}/${sort}-${check_name}":
+    ensure  => 'file',
     owner   => $owner,
     group   => $group,
     mode    => $mode,
-    content => epp('mollyguard/checks/check-libvirt.sh.epp', {'options' => $options }),
+    content => epp('mollyguard/checks/check-libvirt.sh.epp', { 'options' => $options }),
   }
 }

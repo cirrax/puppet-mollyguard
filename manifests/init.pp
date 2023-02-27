@@ -30,9 +30,8 @@ class mollyguard (
   String  $check_destination = '/etc/molly-guard/run.d',
   Boolean $purge_checks      = true,
   Array   $ignore_sys_checks = ['10-print-message', '30-query-hostname'],
-){
-
-  package{ $packages:
+) {
+  package { $packages:
     ensure => $package_ensure,
     tag    => 'molly-guard-packages',
   }
