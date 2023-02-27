@@ -6,11 +6,11 @@
 set -e
 
 # check if drbd resources are in sync
-if [ "$(drbd-overview |grep -v UpToDate/UpToDate | wc -l)" -gt 0 ] ; then
+if [ "$(cat /proc/drbd| sed -n  's/^\([0-9]*:\)/\1/p' |grep -v UpToDate/UpToDate | wc -l)" -gt 0 ] ; then
   echo
-  echo "There are drbd volumes that are not upto date:"
+  echo "There are drbd volumes that are not in sync:"
   echo
-  drbd-overview | grep -v UpToDate/UpToDate
+  cat /proc/drbd| sed -n  's/^\([0-9]*:\)/\1/p' | grep -v UpToDate/UpToDate
   echo
   read -p "Do you want to continue with '$MOLLYGUARD_CMD'? (yN) " answer
   if [ "$answer" = "y" ] ; then
