@@ -1,0 +1,7 @@
+---
+# common settings for puppet-mollyguard
+#
+
+lookup_options:
+  mollyguard::checks:
+    merge: 'hash'

@@ -5,7 +5,8 @@
 # @param packages
 #   Array of packages to install, defaults to ['molly-guard']
 # @param checks
-#   Hash of additional checks to install, defaults to {}
+#   Hash of additional checks to install, defaults to {}.
+#   This parameter is hiera hash merged by default.
 #
 #   Example (hiera):
 #     mollyguard::checks:

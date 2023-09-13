@@ -53,7 +53,8 @@ Default value: `['molly-guard']`
 
 Data type: `Hash`
 
-Hash of additional checks to install, defaults to {}
+Hash of additional checks to install, defaults to {}.
+This parameter is hiera hash merged by default.
 
 Example (hiera):
   mollyguard::checks:
