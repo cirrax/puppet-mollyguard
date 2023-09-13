@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# Managed with puppet (module mollyguard)
+#
+# This script checks if the local node is
+# set into drain mode or not
+#
+
+set -e
+
+MAINT=`rabbitmqctl status --formatter json|jq .is_under_maintenance`
+
+if [ "$MAINT" = 'true' ]; then
+   echo 'rabbitmq is in maintenance mode => OK'
+   exit 0
+else
+   echo
+   echo 'rabbitmq is not in maintenance mode'
+   echo 'use "rabbitmq-upgrade drain" to set maintenance mode first'
+   echo 
+   read -p "Do you want to continue with '$MOLLYGUARD_CMD'? (yN) " answer
+     if [ "$answer" = "y" ] ; then
+    exit 0
+  else
+    exit 1
+  fi
+fi
