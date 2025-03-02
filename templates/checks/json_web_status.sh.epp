@@ -1,0 +1,45 @@
+<%- | Array[String[1]] $uris      = [],
+      Array[String[1]] $jqueries  = [],
+      Boolean          $show_json = truem
+| -%>
+#!/bin/sh
+# 
+# Managed with puppet (module mollyguard)
+#
+# This script runs multiple jq queries on
+# a json file requested with curl
+#
+
+set -e
+
+res=0
+
+for uri in <%= $uris.join(' ') %>; do
+  json=$(curl --silent ${uri})
+  echo
+  echo "received ${uri} status:"
+  <%- if $show_json { -%>
+  echo ${json}|jq
+  <%- } -%>
+  for query in '<%= $jqueries.join("' '") %>'; do
+    result=$(echo ${json}|jq ${query})
+    if [ "$result" != 'true' ] ; then
+       echo "ERROR: result of ${query} is ${result}"  
+       res=1
+    else
+       echo "result of '${query}' is good."
+    fi
+  done
+done
+
+if [ $res = 0 ] ; then
+  exit 0 
+else
+  echo
+  read -p "Do you want to continue with '$MOLLYGUARD_CMD'? (yN) " answer
+  if [ "$answer" = "y" ] ; then
+    exit 0
+  else
+    exit 1
+  fi
+fi

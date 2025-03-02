@@ -12,6 +12,7 @@
 
 * [`mollyguard::checks::ceph`](#mollyguard--checks--ceph): use this to add ceph check to molly-guard
 * [`mollyguard::checks::drbd`](#mollyguard--checks--drbd): use this to add drbd check to molly-guard
+* [`mollyguard::checks::json_web_status`](#mollyguard--checks--json_web_status): check a json status
 * [`mollyguard::checks::libvirt`](#mollyguard--checks--libvirt): use this to add check for running libbvirt domains to molly-guard
 * [`mollyguard::checks::rabbitmq`](#mollyguard--checks--rabbitmq): use this to add drbd check to molly-guard
 * [`mollyguard::checks::repmgr_postgres`](#mollyguard--checks--repmgr_postgres): use this to add repmgr-postgres check to molly-guard
@@ -214,6 +215,104 @@ Data type: `String`
 mode of the check (file), defaults to '0755'
 
 Default value: `'0755'`
+
+### <a name="mollyguard--checks--json_web_status"></a>`mollyguard::checks::json_web_status`
+
+request a json file from an url
+and check a value
+
+ensure that jq and curl is available on the
+target node.
+
+#### Parameters
+
+The following parameters are available in the `mollyguard::checks::json_web_status` defined type:
+
+* [`destination`](#-mollyguard--checks--json_web_status--destination)
+* [`check_name`](#-mollyguard--checks--json_web_status--check_name)
+* [`sort`](#-mollyguard--checks--json_web_status--sort)
+* [`owner`](#-mollyguard--checks--json_web_status--owner)
+* [`group`](#-mollyguard--checks--json_web_status--group)
+* [`mode`](#-mollyguard--checks--json_web_status--mode)
+* [`uris`](#-mollyguard--checks--json_web_status--uris)
+* [`jqueries`](#-mollyguard--checks--json_web_status--jqueries)
+* [`show_json`](#-mollyguard--checks--json_web_status--show_json)
+
+##### <a name="-mollyguard--checks--json_web_status--destination"></a>`destination`
+
+Data type: `String`
+
+directory where to put the check (mandatory)
+
+##### <a name="-mollyguard--checks--json_web_status--check_name"></a>`check_name`
+
+Data type: `String`
+
+name of the check (defaults to $title)
+
+Default value: `$title`
+
+##### <a name="-mollyguard--checks--json_web_status--sort"></a>`sort`
+
+Data type: `String`
+
+sort parameter (defaults to '20')
+
+Default value: `'20'`
+
+##### <a name="-mollyguard--checks--json_web_status--owner"></a>`owner`
+
+Data type: `String`
+
+owner of the check (file), defaults to 'root'
+
+Default value: `'root'`
+
+##### <a name="-mollyguard--checks--json_web_status--group"></a>`group`
+
+Data type: `String`
+
+group of the check (file), defaults to 'root'
+
+Default value: `'root'`
+
+##### <a name="-mollyguard--checks--json_web_status--mode"></a>`mode`
+
+Data type: `String`
+
+mode of the check (file), defaults to '0755'
+
+Default value: `'0755'`
+
+##### <a name="-mollyguard--checks--json_web_status--uris"></a>`uris`
+
+Data type: `Array[String[1]]`
+
+array of uris for json files.
+each json file received will be checked
+
+Default value: `[]`
+
+##### <a name="-mollyguard--checks--json_web_status--jqueries"></a>`jqueries`
+
+Data type: `Array[String[1]]`
+
+array of queries to run on every json
+for syntax see man jq. The query needs to
+return 'true' for the check to pass.
+an examle could be '.numberofmembers|contains(3)'
+which is true if the json contains a
+nuberofmembers equal 3
+
+Default value: `[]`
+
+##### <a name="-mollyguard--checks--json_web_status--show_json"></a>`show_json`
+
+Data type: `Boolean`
+
+if we show the json we query (defaults true)
+
+Default value: `true`
 
 ### <a name="mollyguard--checks--libvirt"></a>`mollyguard::checks::libvirt`
 
