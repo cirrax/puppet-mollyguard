@@ -33,15 +33,12 @@
   ],
   "requirements": [
     {
-      "name": "puppet",
+      "name": "openvox",
       "version_requirement": ">=4.0.0 < 8.0.0"
     }
   ],
   "tags": [
     "molly-guard",
     "reboot"
-  ],
-  "pdk-version": "3.4.0",
-  "template-url": "https://github.com/puppetlabs/pdk-templates#main",
-  "template-ref": "tags/3.4.0.3-0-g8fb22fc"
+  ]
 }

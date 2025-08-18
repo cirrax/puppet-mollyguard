@@ -1,10 +1,5 @@
 # molly-guard puppet module
 
-[![Build Status](https://travis-ci.org/cirrax/puppet-mollyguard.svg?branch=master)](https://travis-ci.org/cirrax/puppet-mollyguard)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/cirrax/mollyguard.svg?style=flat-square)](https://forge.puppetlabs.com/cirrax/mollyguard)
-[![Puppet Forge](https://img.shields.io/puppetforge/dt/cirrax/mollyguard.svg?style=flat-square)](https://forge.puppet.com/cirrax/mollyguard)
-[![Puppet Forge](https://img.shields.io/puppetforge/e/cirrax/mollyguard.svg?style=flat-square)](https://forge.puppet.com/cirrax/mollyguard)
-[![Puppet Forge](https://img.shields.io/puppetforge/f/cirrax/mollyguard.svg?style=flat-square)](https://forge.puppet.com/cirrax/mollyguard)
 
 #### Table of Contents
 
