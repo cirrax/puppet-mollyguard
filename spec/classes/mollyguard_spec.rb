@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -8,7 +9,7 @@ describe 'mollyguard' do
       checks: {},
       check_destination: '/etc/molly-guard/run.d',
       purge_checks: true,
-      ignore_sys_checks: ['10-print-message', '30-query-hostname'] }
+      ignore_sys_checks: %w[10-print-message 30-query-hostname] }
   end
 
   shared_examples 'mollyguard shared example' do
@@ -42,25 +43,25 @@ describe 'mollyguard' do
         it_behaves_like 'mollyguard shared example'
         it_behaves_like 'mollyguard purge checks shared example'
 
-        it { is_expected.to contain_file(params[:check_destination] + '/10-print-message') }
-        it { is_expected.to contain_file(params[:check_destination] + '/30-query-hostname') }
+        it { is_expected.to contain_file("#{params[:check_destination]}/10-print-message") }
+        it { is_expected.to contain_file("#{params[:check_destination]}/30-query-hostname") }
       end
 
       context 'with non defaults' do
         let :params do
           default_params.merge(
             package_ensure: 'installed',
-            packages: ['molly-guard', 'blah'],
+            packages: %w[molly-guard blah],
             check_destination: '/tmp',
-            ignore_sys_checks: ['30-whatever', '30-another'],
+            ignore_sys_checks: %w[30-whatever 30-another]
           )
         end
 
         it_behaves_like 'mollyguard shared example'
         it_behaves_like 'mollyguard purge checks shared example'
 
-        it { is_expected.to contain_file(params[:check_destination] + '/30-whatever') }
-        it { is_expected.to contain_file(params[:check_destination] + '/30-another') }
+        it { is_expected.to contain_file("#{params[:check_destination]}/30-whatever") }
+        it { is_expected.to contain_file("#{params[:check_destination]}/30-another") }
 
         it {
           is_expected.to contain_package('blah')
@@ -73,15 +74,15 @@ describe 'mollyguard' do
         let :params do
           default_params.merge(
             purge_checks: false,
-            check_destination: '/tmp',
+            check_destination: '/tmp'
           )
         end
 
         it_behaves_like 'mollyguard shared example'
 
         it { is_expected.not_to contain_file(params[:check_destination]) }
-        it { is_expected.not_to contain_file(params[:check_destination] + '/10-print-message') }
-        it { is_expected.not_to contain_file(params[:check_destination] + '/30-query-hostname') }
+        it { is_expected.not_to contain_file("#{params[:check_destination]}/10-print-message") }
+        it { is_expected.not_to contain_file("#{params[:check_destination]}/30-query-hostname") }
       end
     end
   end

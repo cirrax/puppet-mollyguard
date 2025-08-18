@@ -19,7 +19,7 @@ describe 'mollyguard::checks::json_web_status' do
     end
 
     it {
-      is_expected.to contain_file(params[:destination] + '/' + params[:sort] + '-' + params[:check_name])
+      is_expected.to contain_file("#{params[:destination]}/#{params[:sort]}-#{params[:check_name]}")
         .with_ensure('file')
         .with_owner(params[:owner])
         .with_group(params[:group])
@@ -50,7 +50,7 @@ describe 'mollyguard::checks::json_web_status' do
             group: 'someone',
             mode: '4242',
             uris: ['http://foo', 'http://bar'],
-            jqueries: ['.numberofmembers|contains(3)'],
+            jqueries: ['.numberofmembers|contains(3)']
           )
         end
 

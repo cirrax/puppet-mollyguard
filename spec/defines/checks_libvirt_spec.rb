@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -18,7 +19,7 @@ describe 'mollyguard::checks::libvirt' do
     end
 
     it {
-      is_expected.to contain_file(params[:destination] + '/' + params[:sort] + '-' + params[:check_name])
+      is_expected.to contain_file("#{params[:destination]}/#{params[:sort]}-#{params[:check_name]}")
         .with_ensure('file')
         .with_owner(params[:owner])
         .with_group(params[:group])
@@ -48,7 +49,7 @@ describe 'mollyguard::checks::libvirt' do
             sort: '42',
             owner: 'someone',
             group: 'someone',
-            mode: '4242',
+            mode: '4242'
           )
         end
 
