@@ -8,25 +8,18 @@
 
 set -e
 
+if ! su - postgres -c "repmgr node check --role" | grep -q "OK (node is standby)"; then
+    printf "\nThis PostgreSQL node is not a standby, or repmgr returned an error.\n\n"
 
-# check if we are primary 
-if [ ! `su -c 'repmgr node check --role' postgres|grep 'OK (node is standby)'` ] ; then
-  echo
-  echo "this postgres node is not in standby mode, or another error occured"
-  echo
-  su -c 'repmgr node check --role' postgres |sed 's/^OK//'
-  echo
-  su -c 'repmgr node status' postgres
-  echo
-  read -p "Do you want to continue with '$MOLLYGUARD_CMD'? (yN) " answer
-  if [ "$answer" = "y" ] ; then
-    exit 0
-  else
-    exit 1
-  fi
+    su - postgres -c "repmgr node check" || true
+    printf "\n"
+
+    printf "Continue with '%s'? (y/N) " "$MOLLYGUARD_CMD"
+    read answer
+
+    [ "$answer" = "y" ] || exit 1
 fi
 
-echo "\nPostgres/repmgr seems to be in standby on this node, continue\n"
+printf "\nPostgres/repmgr reports this node as standby. Continuing.\n\n"
 
 exit 0
-
