@@ -14,6 +14,7 @@
 * [`mollyguard::checks::drbd`](#mollyguard--checks--drbd): use this to add drbd check to molly-guard
 * [`mollyguard::checks::json_web_status`](#mollyguard--checks--json_web_status): check a json status
 * [`mollyguard::checks::libvirt`](#mollyguard--checks--libvirt): use this to add check for running libbvirt domains to molly-guard
+* [`mollyguard::checks::lockfile`](#mollyguard--checks--lockfile): use this to add repmgr-postgres check to molly-guard
 * [`mollyguard::checks::rabbitmq`](#mollyguard--checks--rabbitmq): use this to add drbd check to molly-guard
 * [`mollyguard::checks::repmgr_postgres`](#mollyguard--checks--repmgr_postgres): use this to add repmgr-postgres check to molly-guard
 
@@ -388,6 +389,75 @@ set this to '--state-running --state-paused --state-other'
 if you do not care about shutdown instances.
 
 Default value: `'--all'`
+
+### <a name="mollyguard--checks--lockfile"></a>`mollyguard::checks::lockfile`
+
+use this to add repmgr-postgres check to molly-guard
+
+#### Parameters
+
+The following parameters are available in the `mollyguard::checks::lockfile` defined type:
+
+* [`destination`](#-mollyguard--checks--lockfile--destination)
+* [`lockfile`](#-mollyguard--checks--lockfile--lockfile)
+* [`check_name`](#-mollyguard--checks--lockfile--check_name)
+* [`sort`](#-mollyguard--checks--lockfile--sort)
+* [`owner`](#-mollyguard--checks--lockfile--owner)
+* [`group`](#-mollyguard--checks--lockfile--group)
+* [`mode`](#-mollyguard--checks--lockfile--mode)
+
+##### <a name="-mollyguard--checks--lockfile--destination"></a>`destination`
+
+Data type: `String`
+
+directory where to put the check (mandatory)
+
+##### <a name="-mollyguard--checks--lockfile--lockfile"></a>`lockfile`
+
+Data type: `Stdlib::Absolutepath`
+
+lockfile to check.
+this check if a lockfile exist
+
+##### <a name="-mollyguard--checks--lockfile--check_name"></a>`check_name`
+
+Data type: `String`
+
+name of the check (defaults to $title)
+
+Default value: `$title`
+
+##### <a name="-mollyguard--checks--lockfile--sort"></a>`sort`
+
+Data type: `String`
+
+sort parameter (defaults to '20')
+
+Default value: `'20'`
+
+##### <a name="-mollyguard--checks--lockfile--owner"></a>`owner`
+
+Data type: `String`
+
+owner of the check (file), defaults to 'root'
+
+Default value: `'root'`
+
+##### <a name="-mollyguard--checks--lockfile--group"></a>`group`
+
+Data type: `String`
+
+group of the check (file), defaults to 'root'
+
+Default value: `'root'`
+
+##### <a name="-mollyguard--checks--lockfile--mode"></a>`mode`
+
+Data type: `String`
+
+mode of the check (file), defaults to '0755'
+
+Default value: `'0755'`
 
 ### <a name="mollyguard--checks--rabbitmq"></a>`mollyguard::checks::rabbitmq`
 

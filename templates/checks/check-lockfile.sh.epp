@@ -1,0 +1,27 @@
+<%- | Stdlib::Absolutepath $lockfile,
+  | -%>
+#!/bin/sh
+#
+# Managed with puppet (module mollyguard)
+#
+# This script checks if a lockfile exists
+#
+
+set -e
+
+# check if ceph is healthy
+if [ -e "<%= $lockfile %>" ] ; then
+  echo 
+  echo "Lockfile <%= $lockfile %> exist."
+  echo
+  read -p "Do you want to continue with '$MOLLYGUARD_CMD'? (yN) " answer
+  if [ "$answer" = "y" ] ; then
+    exit 0
+  else
+    exit 1
+  fi
+fi
+
+echo "\nNo lockfile <%= $lockfile %> found, continue\n"
+
+exit 0
