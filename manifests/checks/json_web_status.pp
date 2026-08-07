@@ -49,9 +49,9 @@ define mollyguard::checks::json_web_status (
     group   => $group,
     mode    => $mode,
     content => epp('mollyguard/checks/json_web_status.sh.epp', {
-        'uris'      => $uris,
-        'jqueries'  => $jqueries,
-        'show_json' => $show_json,
+      'uris'      => $uris,
+      'jqueries'  => $jqueries,
+      'show_json' => $show_json,
     }),
   }
 }

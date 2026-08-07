@@ -10,7 +10,7 @@ describe 'mollyguard::checks::json_web_status' do
       sort: '20',
       owner: 'root',
       group: 'root',
-      mode: '0755' }
+      mode: '0755', }
   end
 
   shared_examples 'mollyguard::checks::json_web_status' do
@@ -50,7 +50,7 @@ describe 'mollyguard::checks::json_web_status' do
             group: 'someone',
             mode: '4242',
             uris: ['http://foo', 'http://bar'],
-            jqueries: ['.numberofmembers|contains(3)']
+            jqueries: ['.numberofmembers|contains(3)'],
           )
         end
 
