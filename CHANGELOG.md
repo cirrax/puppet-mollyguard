@@ -1,7 +1,15 @@
 # Changelog cirrax-mollyguard
 
 
-## Version: 1.2.3 (18 August 2025)
+## Version: 1.3.0 (7 August 2026)
+* allow to use a puppet defined check multiple time ([e298120](https://github.com/cirrax/puppet-mollyguard/commit/e29812007833a82dfa097030e5ee31a5e9f767ac))
+* add an additional check for existance of lockfile ([ed469eb](https://github.com/cirrax/puppet-mollyguard/commit/ed469ebff3ea11b28d4f2bb2370594fa328f2842))
+* Update check-repmgr-postgres.epp ([639a7d4](https://github.com/cirrax/puppet-mollyguard/commit/639a7d40b0ed6e4062c52ac9de9cae145082e507))
+* fix rubocop checks ([1dc4a1b](https://github.com/cirrax/puppet-mollyguard/commit/1dc4a1b2ef83118a2c9935c5633e1c91fbea8fe4))
+* fix lint checks ([c764871](https://github.com/cirrax/puppet-mollyguard/commit/c7648710d2bf2253cbc89b67963a4da206fd016f))
+
+## Version: v1.2.3 (18 August 2025)
+* Release v1.2.3 ([d5c2eef](https://github.com/cirrax/puppet-mollyguard/commit/d5c2eefa57b4ee2c7144cf592e6d2f4213c5b235))
 * rubocop fixes ([d05a2e9](https://github.com/cirrax/puppet-mollyguard/commit/d05a2e956faff88fd93f98314c0ce4ab1cc7f4c6))
 * move testing from pdk to openvox ([3020127](https://github.com/cirrax/puppet-mollyguard/commit/3020127a4ad76cfa7a3e7807ba47d1c6732a919d))
 
