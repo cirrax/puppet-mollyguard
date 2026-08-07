@@ -9,7 +9,7 @@ describe 'mollyguard' do
       checks: {},
       check_destination: '/etc/molly-guard/run.d',
       purge_checks: true,
-      ignore_sys_checks: %w[10-print-message 30-query-hostname] }
+      ignore_sys_checks: %w[10-print-message 30-query-hostname], }
   end
 
   shared_examples 'mollyguard shared example' do
@@ -53,7 +53,7 @@ describe 'mollyguard' do
             package_ensure: 'installed',
             packages: %w[molly-guard blah],
             check_destination: '/tmp',
-            ignore_sys_checks: %w[30-whatever 30-another]
+            ignore_sys_checks: %w[30-whatever 30-another],
           )
         end
 
@@ -74,7 +74,7 @@ describe 'mollyguard' do
         let :params do
           default_params.merge(
             purge_checks: false,
-            check_destination: '/tmp'
+            check_destination: '/tmp',
           )
         end
 
