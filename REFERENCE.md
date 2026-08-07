@@ -63,6 +63,12 @@ Example (hiera):
     libvirt:
       options: '--state-running --state-paused --state-other'
     drbd: {}
+    openvox_run:
+      resource: 'lockfile'
+      lockfile: '/opt/puppetlabs/puppet/cache/state/agent_catalog_run.lock'
+    apt:
+      resource: 'lockfile'
+      lockfile: '/var/lib/dpkg/lock-frontend'
 
 Default value: `{}`
 
