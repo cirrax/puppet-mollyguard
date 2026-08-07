@@ -10,7 +10,7 @@ describe 'mollyguard::checks::libvirt' do
       owner: 'root',
       group: 'root',
       mode: '0755',
-      options: '--all' }
+      options: '--all', }
   end
 
   shared_examples 'mollyguard::checks::libvirt define' do
@@ -49,7 +49,7 @@ describe 'mollyguard::checks::libvirt' do
             sort: '42',
             owner: 'someone',
             group: 'someone',
-            mode: '4242'
+            mode: '4242',
           )
         end
 

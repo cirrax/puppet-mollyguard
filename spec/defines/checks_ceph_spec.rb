@@ -9,7 +9,7 @@ describe 'mollyguard::checks::ceph' do
       sort: '20',
       owner: 'root',
       group: 'root',
-      mode: '0755' }
+      mode: '0755', }
   end
 
   shared_examples 'mollyguard::checks::ceph define' do
@@ -48,7 +48,7 @@ describe 'mollyguard::checks::ceph' do
             sort: '42',
             owner: 'someone',
             group: 'someone',
-            mode: '4242'
+            mode: '4242',
           )
         end
 

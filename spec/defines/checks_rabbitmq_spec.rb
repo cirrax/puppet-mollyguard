@@ -9,7 +9,7 @@ describe 'mollyguard::checks::rabbitmq' do
       sort: '20',
       owner: 'root',
       group: 'root',
-      mode: '0755' }
+      mode: '0755', }
   end
 
   shared_examples 'mollyguard::checks::rabbitmq define' do
@@ -48,7 +48,7 @@ describe 'mollyguard::checks::rabbitmq' do
             sort: '42',
             owner: 'someone',
             group: 'someone',
-            mode: '4242'
+            mode: '4242',
           )
         end
 
