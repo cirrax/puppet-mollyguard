@@ -13,6 +13,12 @@
 #       libvirt:
 #         options: '--state-running --state-paused --state-other'
 #       drbd: {}
+#       openvox_run:
+#         resource: 'lockfile'
+#         lockfile: '/opt/puppetlabs/puppet/cache/state/agent_catalog_run.lock'
+#       apt:
+#         resource: 'lockfile'
+#         lockfile: '/var/lib/dpkg/lock-frontend'
 #   
 # @param check_destination
 #   where to put the additional checks, 
@@ -58,6 +64,7 @@ class mollyguard (
 
   # create generic resources (eg. to retrieve certificate)
   $checks.each | $res, $vals | {
-    create_resources("::mollyguard::checks::${res}", { "${res}" => $vals }, $check_defaults )
+    $_ov_res = pick($vals['resource'], $res)
+    create_resources("::mollyguard::checks::${_ov_res}", { "${res}" => $vals.delete('resource') }, $check_defaults )
   }
 }

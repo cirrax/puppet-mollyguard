@@ -47,6 +47,22 @@ describe 'mollyguard' do
         it { is_expected.to contain_file("#{params[:check_destination]}/30-query-hostname") }
       end
 
+      context 'with custom checks' do
+        let :params do
+          default_params.merge(
+            checks: { drbd: {}, lock1: { resource: 'lockfile', lockfile: '/tmp/lock1.lck' }, lock2: { resource: 'lockfile', lockfile: '/tmp/lock2.lck' } },
+          )
+        end
+
+        it_behaves_like 'mollyguard shared example'
+        it_behaves_like 'mollyguard purge checks shared example'
+
+        it { is_expected.to contain_file("#{params[:check_destination]}/10-print-message") }
+        it { is_expected.to contain_file("#{params[:check_destination]}/20-lock1") }
+        it { is_expected.to contain_file("#{params[:check_destination]}/20-lock2") }
+        it { is_expected.to contain_file("#{params[:check_destination]}/30-query-hostname") }
+      end
+
       context 'with non defaults' do
         let :params do
           default_params.merge(
